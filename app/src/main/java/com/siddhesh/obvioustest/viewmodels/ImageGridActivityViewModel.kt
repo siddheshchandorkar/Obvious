@@ -1,4 +1,4 @@
-package com.siddhesh.obvioustest
+package com.siddhesh.obvioustest.viewmodels
 
 import android.arch.lifecycle.ViewModel
 import com.siddhesh.network.RetrofitRepository
@@ -9,14 +9,10 @@ import kotlinx.coroutines.launch
 
 class ImageGridActivityViewModel : ViewModel() {
 
-    init {
-        callGetImageListApi()
-    }
-    private fun callGetImageListApi() {
+    public fun callGetImageListApi() {
         CoroutineScope(Dispatchers.IO).launch {
             delay(1000)
             RetrofitRepository.instance.getListFromServer()
         }
-
     }
 }
