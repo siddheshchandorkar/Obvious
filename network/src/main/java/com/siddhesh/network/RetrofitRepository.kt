@@ -1,6 +1,7 @@
 package com.siddhesh.network
 
 import android.arch.lifecycle.MutableLiveData
+import com.siddhesh.commons.models.ImageDetailsModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -9,7 +10,7 @@ import retrofit2.Response
 class RetrofitRepository {
     private val retrofitService = RetrofitFactory.makeRetrofitService()
 
-    var imageListLiveData = MutableLiveData<ArrayList<String>>()
+    var imageListLiveData = MutableLiveData<ArrayList<ImageDetailsModel>>()
 
 
     private object HOLDER {
@@ -21,11 +22,11 @@ class RetrofitRepository {
     }
 
     suspend fun getListFromServer() {
-        retrofitService.getList().enqueue(object : Callback<String> {
+        retrofitService.getList().enqueue(object : Callback<List<ImageDetailsModel>> {
 
             override fun onResponse(
-                call: Call<String>,
-                response: Response<String>
+                call: Call<List<ImageDetailsModel>>,
+                response: Response<List<ImageDetailsModel>>
             ) {
                 try {
 
@@ -35,10 +36,9 @@ class RetrofitRepository {
                 }
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
+            override fun onFailure(call: Call<List<ImageDetailsModel>>, t: Throwable) {
                 imageListLiveData.value = null
                 t.printStackTrace()
-
             }
         })
     }

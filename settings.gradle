@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "ObviousTest"
 include ':app'
 include ':network'
+include ':commons'
