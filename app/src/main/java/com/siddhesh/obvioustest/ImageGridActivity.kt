@@ -41,6 +41,8 @@ class ImageGridActivity : AppCompatActivity(), ImageClickListener {
     }
 
     override fun onImageClick(imageDetailsModel: ImageDetailsModel) {
-        startActivity(Intent(this, ImageDetailsActivity::class.java))
+        val intent=Intent(this, ImageDetailsActivity::class.java)
+        intent.putExtra(ImageDetailsActivity.KEY_IMAGE_DETAILS,imageDetailsModel)
+        startActivity(intent)
     }
 }

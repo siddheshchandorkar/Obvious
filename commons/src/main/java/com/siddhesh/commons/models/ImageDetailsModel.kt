@@ -1,7 +1,10 @@
 package com.siddhesh.commons.models
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import com.siddhesh.commons.utils.JsonKeys
+
 
 data class ImageDetailsModel(
 
@@ -21,4 +24,41 @@ data class ImageDetailsModel(
     var title: String? = "",
     @SerializedName(JsonKeys.KEY_URL)
     var url: String? = ""
-)
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString()
+    )
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+
+    override fun writeToParcel(dest: Parcel, flags: Int) {
+        dest.writeString(copyRight)
+        dest.writeString(date)
+        dest.writeString(explanation)
+        dest.writeString(hdURL)
+        dest.writeString(mediaType)
+        dest.writeString(serviceVersion)
+        dest.writeString(title)
+        dest.writeString(url)
+    }
+
+    companion object CREATOR : Parcelable.Creator<ImageDetailsModel> {
+        override fun createFromParcel(parcel: Parcel): ImageDetailsModel {
+            return ImageDetailsModel(parcel)
+        }
+
+        override fun newArray(size: Int): Array<ImageDetailsModel?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
