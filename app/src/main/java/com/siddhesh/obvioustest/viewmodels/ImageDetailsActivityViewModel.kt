@@ -1,5 +1,6 @@
 package com.siddhesh.obvioustest.viewmodels
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
+
 
 class ImageDetailsActivityViewModel : ViewModel()

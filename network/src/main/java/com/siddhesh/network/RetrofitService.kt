@@ -8,5 +8,5 @@ import retrofit2.http.GET
 interface RetrofitService {
 
     @GET("getDetails")
-    fun getList(): Call<List<ImageDetailsModel>>
+    fun getList(): Call<ArrayList<ImageDetailsModel>>
 }

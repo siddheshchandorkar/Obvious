@@ -1,8 +1,8 @@
 package com.siddhesh.obvioustest
 
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.siddhesh.obvioustest.databinding.ActivityImageDetailsBinding
 import com.siddhesh.obvioustest.viewmodels.ImageDetailsActivityViewModel
 

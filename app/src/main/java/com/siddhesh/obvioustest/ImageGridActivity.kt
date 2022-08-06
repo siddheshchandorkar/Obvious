@@ -1,10 +1,16 @@
 package com.siddhesh.obvioustest
 
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.flexbox.*
+import com.siddhesh.network.RetrofitRepository
 import com.siddhesh.obvioustest.databinding.ActivityImageListBinding
 import com.siddhesh.obvioustest.viewmodels.ImageGridActivityViewModel
+import com.siddhesh.obvioustest.viewmodels.ImageItemViewModel
+
 
 class ImageGridActivity : AppCompatActivity() {
     private lateinit var viewModel: ImageGridActivityViewModel
@@ -17,5 +23,19 @@ class ImageGridActivity : AppCompatActivity() {
         viewModel = ImageGridActivityViewModel()
         binding.vm = viewModel
         binding.lifecycleOwner = this
+        binding.rcvImage.adapter=viewModel.gridAdapter
+        val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        binding.rcvImage.layoutManager = staggeredGridLayoutManager
+
+        RetrofitRepository.instance.imageListLiveData.observe(this) { serverlist ->
+            val list= ArrayList<ImageItemViewModel>()
+            serverlist?.let {
+                it.forEach { imageDetails->
+                    list.add(ImageItemViewModel(imageDetails))
+                }
+                viewModel.gridAdapter.setData(list)
+            }
+
+        }
     }
 }
