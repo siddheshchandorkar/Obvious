@@ -5,6 +5,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/*
+* Retrofit Service Class
+*/
 object RetrofitFactory {
 
     private const val BASE_URL = "https://62ee15d4a785760e677399e1.mockapi.io/siddhesh/v1/"

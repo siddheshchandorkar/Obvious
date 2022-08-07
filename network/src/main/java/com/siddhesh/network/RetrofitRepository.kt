@@ -7,11 +7,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
+/*
+* All the api calls should handled here
+* */
 class RetrofitRepository {
     private val retrofitService = RetrofitFactory.makeRetrofitService()
-
     var imageListLiveData = MutableLiveData<ArrayList<ImageDetailsModel>?>()
-
 
     private object HOLDER {
         val INSTANCE = RetrofitRepository()
@@ -21,8 +22,11 @@ class RetrofitRepository {
         val instance: RetrofitRepository by lazy { HOLDER.INSTANCE }
     }
 
+    /*
+    * Api call handled to get all image details
+    * */
     suspend fun getListFromServer() {
-        retrofitService.getList().enqueue(object : Callback<ArrayList<ImageDetailsModel>> {
+        retrofitService.getAllDetails().enqueue(object : Callback<ArrayList<ImageDetailsModel>> {
 
             override fun onResponse(
                 call: Call<ArrayList<ImageDetailsModel>>,
@@ -31,16 +35,16 @@ class RetrofitRepository {
                 try {
                     response.body()?.let {
                         imageListLiveData.value=it
-                    }?: run {
-                        imageListLiveData.value = null
                     }
                 } catch (t: Throwable) {
+                    //set null list in case of crash
                     imageListLiveData.value = null
                     t.printStackTrace()
                 }
             }
 
             override fun onFailure(call: Call<ArrayList<ImageDetailsModel>>, t: Throwable) {
+                //set null list in case of failure
                 imageListLiveData.value = null
                 t.printStackTrace()
             }

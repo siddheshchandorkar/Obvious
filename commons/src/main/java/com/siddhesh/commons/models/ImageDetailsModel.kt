@@ -7,7 +7,6 @@ import com.siddhesh.commons.utils.JsonKeys
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 data class ImageDetailsModel(
 
     @SerializedName(JsonKeys.KEY_COPY_RIGHTS)
@@ -28,6 +27,7 @@ data class ImageDetailsModel(
     var url: String? = ""
 ) : Parcelable {
 
+    //parsing date string to get Date object for sorting
     fun getParsedDate():Date{
        return SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(date)
     }
