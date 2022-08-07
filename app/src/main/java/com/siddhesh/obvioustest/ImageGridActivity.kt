@@ -1,5 +1,6 @@
 package com.siddhesh.obvioustest
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -12,8 +13,6 @@ import com.siddhesh.obvioustest.databinding.ActivityImageListBinding
 import com.siddhesh.obvioustest.viewmodels.ImageGridActivityViewModel
 import com.siddhesh.obvioustest.viewmodels.ImageItemViewModel
 import java.util.*
-import kotlin.Comparator
-import kotlin.collections.ArrayList
 
 
 class ImageGridActivity : AppCompatActivity(), ImageClickListener {
@@ -45,8 +44,10 @@ class ImageGridActivity : AppCompatActivity(), ImageClickListener {
     }
 
     override fun onImageClick(imageDetailsModel: ImageDetailsModel) {
-        val intent = Intent(this, ImageDetailsActivity::class.java)
+        var intent= Intent(this, ImageDetailsActivity::class.java)
+        val options = ActivityOptions.makeSceneTransitionAnimation(this)
         intent.putExtra(ImageDetailsActivity.KEY_IMAGE_DETAILS, imageDetailsModel)
-        startActivity(intent)
+        startActivity(intent, options.toBundle())
+
     }
 }
