@@ -50,10 +50,16 @@ class ImageGridActivityViewModel(app: Application) : AndroidViewModel(app) {
 
     }
 
+    /*
+    * If Error occurred option for retry
+    * */
     fun retry() {
         callGetImageListApi()
     }
 
+    /*
+    * Check connectivity before api call
+    * */
     private fun isInternetAvailable(): Boolean {
         val connectivityManager =
             getApplication<Application>().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
