@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.siddhesh.commons.R
 
 class BindingUtils {
@@ -30,6 +31,8 @@ class BindingUtils {
             Glide.with(view.context).load(url)
                 .thumbnail(Glide.with(view.context).load(R.drawable.loading))
                 .fitCenter()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
                 .into(view);
         }
     }
