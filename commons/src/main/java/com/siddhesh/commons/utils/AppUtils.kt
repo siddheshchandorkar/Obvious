@@ -1,4 +1,4 @@
-package com.siddhesh.commons
+package com.siddhesh.commons.utils
 
 import java.text.SimpleDateFormat
 import java.util.*

@@ -1,4 +1,4 @@
-package com.siddhesh.obvioustest
+package com.siddhesh.obvioustest.ui
 
 import android.app.ActivityOptions
 import android.content.Intent
@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.siddhesh.commons.models.ImageDetailsModel
 import com.siddhesh.network.RetrofitRepository
+import com.siddhesh.obvioustest.listener.ImageClickListener
+import com.siddhesh.obvioustest.R
 import com.siddhesh.obvioustest.databinding.ActivityImageListBinding
 import com.siddhesh.obvioustest.viewmodels.ImageGridActivityViewModel
 import com.siddhesh.obvioustest.viewmodels.ImageItemViewModel

@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ObviousTest">
         <activity
-            android:name=".ImageGridActivity"
+            android:name=".ui.ImageGridActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ImageDetailsActivity" />
+        <activity android:name=".ui.ImageDetailsActivity" />
     </application>
 
 </manifest>

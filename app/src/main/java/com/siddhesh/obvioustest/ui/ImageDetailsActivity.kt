@@ -1,9 +1,10 @@
-package com.siddhesh.obvioustest
+package com.siddhesh.obvioustest.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.siddhesh.commons.models.ImageDetailsModel
+import com.siddhesh.obvioustest.R
 import com.siddhesh.obvioustest.databinding.ActivityImageDetailsBinding
 import com.siddhesh.obvioustest.viewmodels.ImageDetailsActivityViewModel
 

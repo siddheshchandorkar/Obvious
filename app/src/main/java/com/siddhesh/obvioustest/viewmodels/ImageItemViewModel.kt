@@ -3,7 +3,7 @@ package com.siddhesh.obvioustest.viewmodels
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.siddhesh.commons.models.ImageDetailsModel
-import com.siddhesh.obvioustest.ImageClickListener
+import com.siddhesh.obvioustest.listener.ImageClickListener
 
 class ImageItemViewModel(
     private val imageDetailsModel: ImageDetailsModel,

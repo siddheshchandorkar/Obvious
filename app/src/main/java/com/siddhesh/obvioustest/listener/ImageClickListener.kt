@@ -1,4 +1,4 @@
-package com.siddhesh.obvioustest
+package com.siddhesh.obvioustest.listener
 
 import com.siddhesh.commons.models.ImageDetailsModel
 
