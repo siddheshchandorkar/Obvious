@@ -10,7 +10,7 @@ import retrofit2.Response
 class RetrofitRepository {
     private val retrofitService = RetrofitFactory.makeRetrofitService()
 
-    var imageListLiveData = MutableLiveData<ArrayList<ImageDetailsModel>>()
+    var imageListLiveData = MutableLiveData<ArrayList<ImageDetailsModel>?>()
 
 
     private object HOLDER {

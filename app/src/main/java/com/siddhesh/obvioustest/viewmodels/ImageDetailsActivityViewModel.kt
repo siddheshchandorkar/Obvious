@@ -3,7 +3,7 @@ package com.siddhesh.obvioustest.viewmodels
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.siddhesh.commons.models.ImageDetailsModel
-import com.siddhesh.commons.utils.AppUtils
+import com.siddhesh.commons.AppUtils
 
 
 class ImageDetailsActivityViewModel(val imageDetailsModel: ImageDetailsModel) : ViewModel() {

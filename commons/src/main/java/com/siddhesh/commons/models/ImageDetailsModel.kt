@@ -3,7 +3,7 @@ package com.siddhesh.commons.models
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import com.siddhesh.commons.utils.JsonKeys
+import com.siddhesh.commons.JsonKeys
 import java.text.SimpleDateFormat
 import java.util.*
 

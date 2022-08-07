@@ -1,4 +1,4 @@
-package com.siddhesh.commons.utils
+package com.siddhesh.commons
 
 import android.graphics.Color
 import java.text.SimpleDateFormat

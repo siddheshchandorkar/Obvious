@@ -1,4 +1,4 @@
-package com.siddhesh.commons.utils
+package com.siddhesh.commons
 
 class JsonKeys {
     companion object{

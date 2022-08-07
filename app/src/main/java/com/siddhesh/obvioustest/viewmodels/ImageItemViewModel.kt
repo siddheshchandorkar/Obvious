@@ -4,10 +4,8 @@ import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.siddhesh.commons.models.ImageDetailsModel
-import com.siddhesh.commons.utils.AppUtils
+import com.siddhesh.commons.AppUtils
 import com.siddhesh.obvioustest.ImageClickListener
-import java.text.SimpleDateFormat
-import java.util.*
 
 class ImageItemViewModel(
     private val imageDetailsModel: ImageDetailsModel,

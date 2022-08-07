@@ -39,7 +39,7 @@ class ImageGridActivity : AppCompatActivity(), ImageClickListener {
                 list.sortWith { item1, item2 -> item1.date.compareTo(item2.date); }
                 viewModel.gridAdapter.setData(list)
             }
-
+            viewModel.isApiLoading.value=false
         }
     }
 

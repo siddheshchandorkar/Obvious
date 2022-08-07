@@ -5,7 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/explode.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_image_details.xml" value="0.3185595567867036" />
-        <entry key="app/src/main/res/layout/activity_image_list.xml" value="0.1453125" />
+        <entry key="app/src/main/res/layout/activity_image_list.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_image_grid.xml" value="0.32577903682719545" />
         <entry key="network/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
