@@ -4,6 +4,8 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import com.siddhesh.commons.utils.JsonKeys
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 data class ImageDetailsModel(
@@ -25,6 +27,10 @@ data class ImageDetailsModel(
     @SerializedName(JsonKeys.KEY_URL)
     var url: String? = ""
 ) : Parcelable {
+
+    fun getParsedDate():Date{
+       return SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(date)
+    }
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),

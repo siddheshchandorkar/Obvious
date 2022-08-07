@@ -11,6 +11,9 @@ import com.siddhesh.network.RetrofitRepository
 import com.siddhesh.obvioustest.databinding.ActivityImageListBinding
 import com.siddhesh.obvioustest.viewmodels.ImageGridActivityViewModel
 import com.siddhesh.obvioustest.viewmodels.ImageItemViewModel
+import java.util.*
+import kotlin.Comparator
+import kotlin.collections.ArrayList
 
 
 class ImageGridActivity : AppCompatActivity(), ImageClickListener {
@@ -34,6 +37,7 @@ class ImageGridActivity : AppCompatActivity(), ImageClickListener {
                 it.forEach { imageDetails ->
                     list.add(ImageItemViewModel(imageDetails, this))
                 }
+                list.sortWith { item1, item2 -> item1.date.compareTo(item2.date); }
                 viewModel.gridAdapter.setData(list)
             }
 
