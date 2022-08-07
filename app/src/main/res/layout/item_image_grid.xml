@@ -13,31 +13,31 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{vm.viewDetails}"
-            android:background="@color/black">
+            android:background="@color/black"
+            android:onClick="@{() -> vm.viewDetails()}">
 
             <ImageView
                 android:id="@+id/iv_url_image"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
                 android:minHeight="100dp"
                 android:scaleType="fitCenter"
                 android:src="@mipmap/ic_launcher"
-                android:background="@color/white"
-                app:loadImage="@{vm.imageUrl}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:adjustViewBounds="true"
+                app:loadImage="@{vm.imageUrl}"
                 tools:src="@mipmap/ic_launcher" />
 
             <TextView

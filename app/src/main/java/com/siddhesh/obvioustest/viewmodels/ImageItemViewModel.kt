@@ -1,21 +1,18 @@
 package com.siddhesh.obvioustest.viewmodels
 
-import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.siddhesh.commons.models.ImageDetailsModel
-import com.siddhesh.commons.AppUtils
 import com.siddhesh.obvioustest.ImageClickListener
 
 class ImageItemViewModel(
     private val imageDetailsModel: ImageDetailsModel,
-    val imageClickListener: ImageClickListener
+    private val imageClickListener: ImageClickListener
 ) : ViewModel(), Comparable<ImageDetailsModel> {
-    val randomBackgroundColor = ObservableField(AppUtils.getRandomColorCode())
     val imageUrl = ObservableField(imageDetailsModel.url)
     val title = ObservableField(imageDetailsModel.title)
     val date = (imageDetailsModel.getParsedDate())
-        fun viewDetails(view: View) {
+    fun viewDetails() {
         imageClickListener.onImageClick(imageDetailsModel = imageDetailsModel)
     }
 

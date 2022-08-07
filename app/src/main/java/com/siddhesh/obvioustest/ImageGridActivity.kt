@@ -44,10 +44,9 @@ class ImageGridActivity : AppCompatActivity(), ImageClickListener {
     }
 
     override fun onImageClick(imageDetailsModel: ImageDetailsModel) {
-        var intent= Intent(this, ImageDetailsActivity::class.java)
+        val intent= Intent(this, ImageDetailsActivity::class.java)
         val options = ActivityOptions.makeSceneTransitionAnimation(this)
         intent.putExtra(ImageDetailsActivity.KEY_IMAGE_DETAILS, imageDetailsModel)
         startActivity(intent, options.toBundle())
-
     }
 }
