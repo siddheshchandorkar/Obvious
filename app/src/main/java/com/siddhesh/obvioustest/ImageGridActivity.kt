@@ -23,7 +23,7 @@ class ImageGridActivity : AppCompatActivity(), ImageClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_image_list)
-        viewModel = ImageGridActivityViewModel()
+        viewModel = ImageGridActivityViewModel(application)
         binding.vm = viewModel
         binding.lifecycleOwner = this
         binding.rcvImage.adapter = viewModel.gridAdapter
@@ -38,6 +38,8 @@ class ImageGridActivity : AppCompatActivity(), ImageClickListener {
                 }
                 list.sortWith { item1, item2 -> item1.date.compareTo(item2.date); }
                 viewModel.gridAdapter.setData(list)
+            }?: run {
+                viewModel.isError.value = true
             }
             viewModel.isApiLoading.value=false
         }
