@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import com.siddhesh.commons.utils.JsonKeys
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,8 +29,12 @@ data class ImageDetailsModel(
 ) : Parcelable {
 
     //parsing date string to get Date object for sorting
-    fun getParsedDate():Date{
-       return SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(date)
+    fun getParsedDate():Date?{
+        return try {
+            SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(date)
+        } catch(e:Exception) {
+            null
+        }
     }
     constructor(parcel: Parcel) : this(
         parcel.readString(),

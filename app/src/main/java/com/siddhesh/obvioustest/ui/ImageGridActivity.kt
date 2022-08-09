@@ -15,6 +15,7 @@ import com.siddhesh.obvioustest.databinding.ActivityImageListBinding
 import com.siddhesh.obvioustest.viewmodels.ImageGridActivityViewModel
 import com.siddhesh.obvioustest.viewmodels.ImageItemViewModel
 import java.util.*
+import kotlin.Comparator
 
 
 class ImageGridActivity : AppCompatActivity(), ImageClickListener {
@@ -34,11 +35,11 @@ class ImageGridActivity : AppCompatActivity(), ImageClickListener {
 
         RetrofitRepository.instance.imageListLiveData.observe(this) { serverlist ->
             val list = ArrayList<ImageItemViewModel>()
-            serverlist?.let {
+            serverlist?.let { it ->
                 it.forEach { imageDetails ->
                     list.add(ImageItemViewModel(imageDetails, this))
                 }
-                list.sortWith { item1, item2 -> item1.date.compareTo(item2.date); }
+                list.sortWith(compareBy { item-> item.date })
                 viewModel.gridAdapter.setData(list)
             }?: run {
                 viewModel.isError.value = true
