@@ -28,18 +28,18 @@ class BindingUtils {
         }
         @JvmStatic
         @BindingAdapter(LOAD_IMAGE,IMAGE_LISTENER)
-        fun setLoadImage(view: ImageView, url: String,listener: RequestListener<Drawable>) {
-            if(url ==null){
-                return
+        fun setLoadImage(view: ImageView, url: String?,listener: RequestListener<Drawable>?) {
+
+            url?.let {
+                Glide.with(view.context).load(url)
+                    .listener(listener)
+                    .thumbnail(Glide.with(view.context).load(R.drawable.loading))
+                    .fitCenter()
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .into(view);
             }
 
-            Glide.with(view.context).load(url)
-                .listener(listener)
-                .thumbnail(Glide.with(view.context).load(R.drawable.loading))
-                .fitCenter()
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
-                .into(view);
         }
     }
 }

@@ -29,9 +29,9 @@ class ImageDetailsActivity : AppCompatActivity() {
                 binding.vm = viewModel
                 binding.lifecycleOwner = this
             }else{
-                finish()
+//                finish()
             }
-        }?: finish()
+        } //?: finish()
 
     }
 }
