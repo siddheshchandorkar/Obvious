@@ -9,6 +9,9 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21"
     }
+
+    // Load dependencies
+    apply from: 'gradleScript/dependencies.gradle'
 }
 
 plugins {

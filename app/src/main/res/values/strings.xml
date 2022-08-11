@@ -3,4 +3,5 @@
     <string name="error_please_retry_again">Error! Please Retry Again</string>
     <string name="retry">Retry</string>
     <string name="error_internet_connectivity">Please check your Network Connectivity</string>
+    <string name="not_able_to_load_image_please_check_your_connectivity_and_try_again">Not able to load image, Please check your connectivity and try again</string>
 </resources>
