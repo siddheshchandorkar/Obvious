@@ -14,11 +14,12 @@ import com.siddhesh.commons.utils.AppUtils
 /*
 * Image Details Displayed
 * */
-class ImageDetailsActivityViewModel(val imageDetailsModel: ImageDetailsModel) : ViewModel() {
-    val hdUrl = ObservableField(imageDetailsModel.hdURL)
-    val title = ObservableField(imageDetailsModel.title)
-    val date = ObservableField(AppUtils.getFormattedDate(imageDetailsModel.date!!))
-    val explanation = ObservableField(imageDetailsModel.explanation)
+class ImageDetailsActivityViewModel(private val imageDetailsModel: ImageDetailsModel?) : ViewModel() {
+    var hdUrl: ObservableField<String> = ObservableField<String>(getImageUrl())
+    var title: ObservableField<String> = ObservableField<String>(getImageTitle())
+    var date: ObservableField<String> =
+        ObservableField<String>(AppUtils.getFormattedDate(getImageDate()))
+    var explanation: ObservableField<String> = ObservableField<String>(getImageExplanation())
     val errorVisible = ObservableField(false)
     var errorCallBack: MutableLiveData<RequestListener<Drawable>> = MutableLiveData(getCallBack())
 
@@ -30,7 +31,7 @@ class ImageDetailsActivityViewModel(val imageDetailsModel: ImageDetailsModel) : 
         errorVisible.set(false)
         errorCallBack.value = (null)
         errorCallBack.value = (getCallBack())
-        hdUrl.set(imageDetailsModel.url)
+        hdUrl.set(getImageUrl())
     }
 
 
@@ -63,7 +64,55 @@ class ImageDetailsActivityViewModel(val imageDetailsModel: ImageDetailsModel) : 
             }
 
         }
-
     }
+
+    private fun getImageUrl(): String {
+        return try {
+            imageDetailsModel?.let {
+                it.hdURL?.let { url ->
+                    return url
+                } ?: ""
+            } ?: ""
+        } catch (e: Exception) {
+            ""
+        }
+    }
+
+    private fun getImageTitle(): String {
+        return try {
+            imageDetailsModel?.let {
+                it.title?.let { url ->
+                    return url
+                } ?: ""
+            } ?: ""
+        } catch (e: Exception) {
+            ""
+        }
+    }
+
+    private fun getImageDate(): String {
+        return try {
+            imageDetailsModel?.let {
+                it.date?.let { url ->
+                    return url
+                } ?: ""
+            } ?: ""
+        } catch (e: Exception) {
+            ""
+        }
+    }
+
+    private fun getImageExplanation(): String {
+        return try {
+            imageDetailsModel?.let {
+                it.explanation?.let { url ->
+                    return url
+                } ?: ""
+            } ?: ""
+        } catch (e: Exception) {
+            ""
+        }
+    }
+
 
 }

@@ -25,12 +25,13 @@ class ImageDetailsActivity : AppCompatActivity() {
         bundle?.let {
             if(it.containsKey(KEY_IMAGE_DETAILS)){
                 imageDetailsModel= it.getParcelable(KEY_IMAGE_DETAILS)!!
+                viewModel = ImageDetailsActivityViewModel(imageDetailsModel)
+                binding.vm = viewModel
+                binding.lifecycleOwner = this
             }else{
                 finish()
             }
-        }
-        viewModel = ImageDetailsActivityViewModel(imageDetailsModel)
-        binding.vm = viewModel
-        binding.lifecycleOwner = this
+        }?: finish()
+
     }
 }
