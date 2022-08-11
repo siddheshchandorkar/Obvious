@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.view.View
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
@@ -27,7 +28,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import kotlin.random.Random
 
 @RunWith(AndroidJUnit4::class)
 class ImageGridActivityTest {
@@ -114,10 +114,30 @@ class ImageGridActivityTest {
                 )
             )
         )
-            .perform(RecyclerViewActions.actionOnItemAtPosition<GridAdapter.ViewHolder>(1
-                , click()))
+            .perform(
+                RecyclerViewActions.actionOnItemAtPosition<GridAdapter.ViewHolder>(
+                    1, click()
+                )
+            )
         onView(isRoot()).perform(waitFor(5000))
 
+    }
+
+    @Test
+    fun checkRecyclerviewScroll() {
+        val viewInteraction = onView(ViewMatchers.withId(R.id.rcv_image))
+        onView(isRoot()).perform(waitFor(7000))
+        val imageRecyclerView = getActivity()?.findViewById<RecyclerView>(R.id.rcv_image)
+        val itemCount = imageRecyclerView?.adapter?.itemCount
+        viewInteraction.inRoot(
+            RootMatchers.withDecorView(
+                Matchers.`is`(
+                    getActivity()?.window?.decorView
+                )
+            )
+        )
+            .perform(RecyclerViewActions.scrollToPosition<GridAdapter.ViewHolder>(itemCount!! - 1))
+        onView(isRoot()).perform(waitFor(5000))
     }
 
 
@@ -126,7 +146,7 @@ class ImageGridActivityTest {
         IdlingRegistry.getInstance().unregister(idlingResource)
     }
 
-    private fun waitFor(delay: Long): ViewAction? {
+    private fun waitFor(delay: Long): ViewAction {
         return object : ViewAction {
             override fun getConstraints(): Matcher<View> = isRoot()
             override fun getDescription(): String = "wait for $delay milliseconds"
