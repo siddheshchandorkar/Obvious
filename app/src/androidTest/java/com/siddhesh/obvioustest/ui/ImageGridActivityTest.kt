@@ -12,15 +12,19 @@ import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.isRoot
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.siddhesh.commons.models.ImageDetailsModel
 import com.siddhesh.obvioustest.R
 import com.siddhesh.obvioustest.adapters.GridAdapter
+import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 import org.junit.After
@@ -28,6 +32,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+
 
 @RunWith(AndroidJUnit4::class)
 class ImageGridActivityTest {
@@ -40,13 +45,13 @@ class ImageGridActivityTest {
     @JvmField
     val detailsActivityRule = ActivityScenarioRule(ImageDetailsActivity::class.java)
 
-    private val idlingResource =
-        IntentServiceIdlingResource(ApplicationProvider.getApplicationContext())
+//    private val idlingResource =
+//        IntentServiceIdlingResource(ApplicationProvider.getApplicationContext())
 
     @Before
     fun setUp() {
         ActivityScenario.launch(ImageGridActivity::class.java)
-        IdlingRegistry.getInstance().register(idlingResource)
+//        IdlingRegistry.getInstance().register(idlingResource)
 
     }
 
@@ -140,10 +145,33 @@ class ImageGridActivityTest {
         onView(isRoot()).perform(waitFor(5000))
     }
 
+    @Test
+    fun checkRecyclerviewItemVisibility() {
+        val viewInteraction = onView(ViewMatchers.withId(R.id.rcv_image))
+        onView(isRoot()).perform(waitFor(7000))
+        viewInteraction.inRoot(
+            RootMatchers.withDecorView(
+                Matchers.`is`(
+                    getActivity()?.window?.decorView
+                )
+            )
+        )
+        viewInteraction.check(
+            matches(
+                withViewAtPosition(
+                    1, Matchers.allOf(
+                        ViewMatchers.withId(R.id.cv_row), isDisplayed()
+                    )
+                )
+            )
+        )
+        onView(isRoot()).perform(waitFor(5000))
+    }
+
 
     @After
     fun tearDown() {
-        IdlingRegistry.getInstance().unregister(idlingResource)
+//        IdlingRegistry.getInstance().unregister(idlingResource)
     }
 
     private fun waitFor(delay: Long): ViewAction {
@@ -162,5 +190,18 @@ class ImageGridActivityTest {
             activity = it
         }
         return activity
+    }
+
+    private fun withViewAtPosition(position: Int, itemMatcher: Matcher<View>): Matcher<View> {
+        return object : BoundedMatcher<View, RecyclerView>(RecyclerView::class.java) {
+            override fun describeTo(description: Description?) {
+                itemMatcher.describeTo(description)
+            }
+
+            override fun matchesSafely(recyclerView: RecyclerView): Boolean {
+                val viewHolder = recyclerView.findViewHolderForAdapterPosition(position)
+                return viewHolder != null && itemMatcher.matches(viewHolder.itemView)
+            }
+        }
     }
 }
